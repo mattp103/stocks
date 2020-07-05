@@ -18,7 +18,7 @@ def get_all_current_data():
     # go through each company in the decoded json and gets the name, change and price and adds it to "companies_data"
     for company in decoded_json["feed"]["entry"]:
         data = re.split(': |, ', company["content"]['$t'])  # turns each key and val into items in list "data"
-        # join together key and value pairs in the list to form dict with key: company name and value: dict of data
+        # join together key and value pairs in the list to form dict with key: company name; value: dict of data
         companies_data[codes[data[1]]] = {data[i]: data[i + 1] for i in range(0, len(data), 2)}
 
     return companies_data
@@ -30,7 +30,7 @@ def get_company_current_data(code):
 
     data = re.split(': |, ', decoded_json["feed"]["entry"][0]['content']['$t'])
 
-    return {data[i]: data[i + 1] for i in range(0, len(data), 2)}
+    return {data[i]: data[i + 1] for i in range(0, len(data), 2)}  # returns data for specific company
 
 
 if __name__ == "__main__":
